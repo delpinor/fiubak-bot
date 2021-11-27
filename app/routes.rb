@@ -18,7 +18,7 @@ class Routes
   end
 
   on_message '/time' do |bot, message|
-    bot.api.send_message(chat_id: message.chat.id, text: "La hora es, #{Time.now}")
+    bot.api.send_message(chat_id: message.chat.id, text: "La hora actual es, #{Time.now}")
   end
 
   on_message '/tv' do |bot, message|
