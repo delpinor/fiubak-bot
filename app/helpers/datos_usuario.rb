@@ -5,4 +5,12 @@ class DatosUsuario
     @nombre = nombre.strip
     @email = email.strip
   end
+
+  def convertir_a_json
+    {
+      dni: @dni,
+      nombre: @nombre,
+      email: @email
+    }.to_json
+  end
 end
