@@ -6,10 +6,12 @@ class UsuariosApi
   def post(datos_json)
     @response = Faraday.post(@url, datos_json,
                              'Content-Type' => 'application/json')
-    mensaje!
+    mensaje_de_respuesta!
   end
 
-  def mensaje!
+  private
+
+  def mensaje_de_respuesta!
     JSON.parse(@response.body)['mensaje']
   end
 end
