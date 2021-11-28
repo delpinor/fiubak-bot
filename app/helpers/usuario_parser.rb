@@ -1,5 +1,3 @@
-require_relative '../helpers/datos_usuario'
-
 class UsuarioParser
   def a_json(mensaje)
     datos_array = mensaje.split(',')
