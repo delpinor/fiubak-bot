@@ -4,7 +4,6 @@ require "#{File.dirname(__FILE__)}/tv/series"
 require "#{File.dirname(__FILE__)}/api/usuarios_api"
 require "#{File.dirname(__FILE__)}/helpers/usuario_parser"
 
-
 class Routes
   include Routing
 
