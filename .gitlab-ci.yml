@@ -6,7 +6,7 @@ services:
 variables:
   REGISTRY_URL: registry.gitlab.com/fiuba-memo2/tp2/nairobi-bot
   APP_NAME: bot-nairobi
-  KUBE_NAMESPACE_PREFIX: docentes
+  KUBE_NAMESPACE_PREFIX: nairobi
 
 stages:
   - build
