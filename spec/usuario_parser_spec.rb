@@ -9,11 +9,11 @@ describe 'Usuario parser' do
     expect(usuario.dni).to eq 33_454_678
   end
 
-  xit 'Al parsear tengo el nombre' do
+  it 'Al parsear tengo el nombre' do
     expect(usuario.nombre).to eq 'Juan'
   end
 
-  xit 'Al parsear tengo el email' do
+  it 'Al parsear tengo el email' do
     expect(usuario.email).to eq 'juan@gmail.com'
   end
 end
