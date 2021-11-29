@@ -20,7 +20,7 @@ class Routes
   end
 
   on_message_pattern %r{/registrar (?<datos_usuario>.*)} do |bot, message, args|
-    datos_json = UsuarioParser.new.a_json(args['datos_usuario'])
+    datos_json = UsuarioParser.new.a_json(args['datos_usuario'], message.chat.id)
     mensaje = UsuariosApi.new('/usuarios').post(datos_json)
     bot.api.send_message(chat_id: message.chat.id, text: mensaje.to_s)
   end
