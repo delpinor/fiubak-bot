@@ -3,9 +3,13 @@ require "#{File.dirname(__FILE__)}/../lib/version"
 require "#{File.dirname(__FILE__)}/tv/series"
 require "#{File.dirname(__FILE__)}/api/usuarios_api"
 require "#{File.dirname(__FILE__)}/helpers/usuario_parser"
+require "#{File.dirname(__FILE__)}/comando_bot"
+require "#{File.dirname(__FILE__)}/tarea_ayuda"
+require "#{File.dirname(__FILE__)}/tarea_registrar_usuario"
 
 class Routes
   include Routing
+  extend ComandoBot
 
   on_message '/start' do |bot, message|
     bot.api.send_message(chat_id: message.chat.id, text: "Hola, #{message.from.first_name}")
@@ -18,6 +22,14 @@ class Routes
   on_message '/stop' do |bot, message|
     bot.api.send_message(chat_id: message.chat.id, text: "Chau, #{message.from.username}")
   end
+
+  on_message '/stop' do |bot, message|
+    bot.api.send_message(chat_id: message.chat.id, text: "Chau, #{message.from.username}")
+  end
+
+  procesar_comando('/ayuda', TareaAyuda.new)
+
+  procesar_patron(%r{/registrar (?<datos>.*)}, TareaRegistrarUsuario.new)
 
   on_message_pattern %r{/registrar (?<datos_usuario>.*)} do |bot, message, args|
     datos_json = UsuarioParser.new.a_json(args['datos_usuario'], message.chat.id)
