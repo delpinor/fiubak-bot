@@ -42,7 +42,7 @@ describe 'Bot de telegram' do
     token = 'fake_token'
 
     cuando_envio_un_mensaje(token, '/ayuda')
-    entonces_obtengo_el_mensaje(token, 'Comandos disponibles:' + ' /registrar Nombre, DNI, email')
+    entonces_obtengo_el_mensaje(token, 'Comandos disponibles:' + "\n" + '/registrar Nombre, DNI, email' + "\n" + '/nueva_venta marca, modelo, año, patente')
 
     app = BotClient.new(token)
 
