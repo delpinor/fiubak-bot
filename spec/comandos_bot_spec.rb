@@ -37,15 +37,4 @@ describe 'Bot de telegram' do
 
     app.run_once
   end
-
-  it 'Cuando le envio /nueva_venta, con los datos del auto entonces el bot registra la intencion de venta' do
-    token = 'fake_token'
-
-    cuando_envio_un_mensaje(token, '/nueva_venta fiat,uno,1988,asd-457')
-    entonces_obtengo_el_mensaje(token, 'intencion de venta registrada con exito')
-
-    app = BotClient.new(token)
-
-    app.run_once
-  end
 end
