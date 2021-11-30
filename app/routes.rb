@@ -39,7 +39,6 @@ class Routes
 
   procesar_patron(%r{/nueva_venta (?<datos>.*)}, TareaRegistrarAuto.new)
 
-
   on_message '/time' do |bot, message|
     bot.api.send_message(chat_id: message.chat.id, text: "La hora actual es, #{Time.now}")
   end

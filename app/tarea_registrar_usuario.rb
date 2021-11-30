@@ -1,4 +1,4 @@
-require_relative  '../app/helpers/usuario_parser'
+require_relative '../app/helpers/usuario_parser'
 require_relative '../app/api/web_api'
 
 class TareaRegistrarUsuario
