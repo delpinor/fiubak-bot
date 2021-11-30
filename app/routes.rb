@@ -1,11 +1,12 @@
 require "#{File.dirname(__FILE__)}/../lib/routing"
 require "#{File.dirname(__FILE__)}/../lib/version"
 require "#{File.dirname(__FILE__)}/tv/series"
-require "#{File.dirname(__FILE__)}/api/usuarios_api"
+require "#{File.dirname(__FILE__)}/api/web_api"
 require "#{File.dirname(__FILE__)}/helpers/usuario_parser"
 require "#{File.dirname(__FILE__)}/comando_bot"
 require "#{File.dirname(__FILE__)}/tarea_ayuda"
 require "#{File.dirname(__FILE__)}/tarea_registrar_usuario"
+require "#{File.dirname(__FILE__)}/tarea_registrar_auto"
 require "#{File.dirname(__FILE__)}/tarea_saludar"
 
 class Routes
@@ -35,6 +36,9 @@ class Routes
   procesar_comando('/ayuda', TareaAyuda.new)
 
   procesar_patron(%r{/registrar (?<datos>.*)}, TareaRegistrarUsuario.new)
+
+  procesar_patron(%r{/nueva_venta (?<datos>.*)}, TareaRegistrarAuto.new)
+
 
   on_message '/time' do |bot, message|
     bot.api.send_message(chat_id: message.chat.id, text: "La hora actual es, #{Time.now}")

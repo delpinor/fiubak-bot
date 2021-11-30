@@ -1,4 +1,4 @@
-class UsuariosApi
+class WebApi
   def initialize(path)
     @url = ENV['API_HEROKU_URL'] + path
   end
