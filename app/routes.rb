@@ -6,6 +6,7 @@ require "#{File.dirname(__FILE__)}/helpers/usuario_parser"
 require "#{File.dirname(__FILE__)}/comando_bot"
 require "#{File.dirname(__FILE__)}/tarea_ayuda"
 require "#{File.dirname(__FILE__)}/tarea_registrar_usuario"
+require "#{File.dirname(__FILE__)}/tarea_saludar"
 
 class Routes
   include Routing
@@ -26,6 +27,10 @@ class Routes
   on_message '/stop' do |bot, message|
     bot.api.send_message(chat_id: message.chat.id, text: "Chau, #{message.from.username}")
   end
+
+  procesar_comando('Hola', TareaSaludar.new)
+
+  procesar_comando('hola', TareaSaludar.new)
 
   procesar_comando('/ayuda', TareaAyuda.new)
 

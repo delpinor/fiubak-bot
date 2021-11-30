@@ -1,5 +1,5 @@
 class TareaAyuda
-  def procesar(_datos = nil, _id = nil)
+  def procesar(_message, _datos = nil)
     'Comandos disponibles:' + ' /registrar Nombre, DNI, email'
   end
 end
