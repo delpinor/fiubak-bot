@@ -1,6 +1,8 @@
 require 'rspec/core/rake_task'
 require 'rubocop/rake_task'
 
+ENV['API_HEROKU_URL'] = 'https://test.api'
+
 task :version do
   require './lib/version.rb'
   puts Version.current
