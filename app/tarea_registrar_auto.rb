@@ -8,5 +8,7 @@ class TareaRegistrarAuto
     web = WebApi.new("/usuarios/#{id}/intenciones_de_venta").post(datos_json)
     id_registro = web.id_de_respuesta
     "La intencion de venta #{id_registro} se registró con exito"
+  rescue StandardError
+    'Ups! Hubo un problema. Verificá los datos.'
   end
 end

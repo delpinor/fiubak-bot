@@ -8,5 +8,7 @@ class TareaConsultarIntencionDeVenta
     estado = data_json['estado']
     id = data_json['id']
     "la intencion de venta #{id} se encuentra: #{estado}"
+  rescue StandardError
+    'Ups! Hubo un problema. Verificá los datos.'
   end
 end
