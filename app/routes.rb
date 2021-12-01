@@ -7,6 +7,7 @@ require "#{File.dirname(__FILE__)}/comando_bot"
 require "#{File.dirname(__FILE__)}/tarea_ayuda"
 require "#{File.dirname(__FILE__)}/tarea_registrar_usuario"
 require "#{File.dirname(__FILE__)}/tarea_registrar_auto"
+require "#{File.dirname(__FILE__)}/tarea_consultar_intencion_de_venta"
 require "#{File.dirname(__FILE__)}/tarea_saludar"
 
 class Routes
@@ -38,6 +39,8 @@ class Routes
   procesar_patron(%r{/registrar (?<datos>.*)}, TareaRegistrarUsuario.new)
 
   procesar_patron(%r{/nueva_venta (?<datos>.*)}, TareaRegistrarAuto.new)
+
+  procesar_patron(%r{/consultar_estado (?<datos>.*)}, TareaConsultarIntencionDeVenta.new)
 
   on_message '/time' do |bot, message|
     bot.api.send_message(chat_id: message.chat.id, text: "La hora actual es, #{Time.now}")

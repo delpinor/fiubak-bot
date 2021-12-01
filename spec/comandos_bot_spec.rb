@@ -29,6 +29,14 @@ describe 'Bot de telegram' do
     app.run_once
   end
 
+  it 'Cuando le envio /consultar_estado al bot entonces obtengo el estado de la intencion de venta ' do
+    token = 'fake_token'
+    cuando_registro_el_estado(token, '/consultar_estado 21')
+    entonces_obtengo_el_mensaje(token, 'la intencion de venta 21 se encuentra: en revision')
+    app = BotClient.new(token)
+    app.run_once
+  end
+
   it 'cuando envio /ayuda entonces obtengo una lista donde veo /registrar Nombre, DNI, email' do
     token = 'fake_token'
     cuando_envio_un_mensaje(token, '/ayuda')
