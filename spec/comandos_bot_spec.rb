@@ -1,3 +1,5 @@
+# rubocop:disable all
+
 require 'spec_helper'
 require 'web_mock'
 require_relative '../spec/helpers/bot_helpers'
@@ -37,11 +39,17 @@ describe 'Bot de telegram' do
     app.run_once
   end
 
-  xit 'cuando envio /ayuda entonces obtengo una lista donde veo /registrar Nombre, DNI, email' do
+  it 'cuando envio /ayuda entonces obtengo una lista donde veo /registrar Nombre, DNI, email' do
+    mensaje_esperado = 'Comandos disponibles:' + "\n" \
+      '/registrar Nombre, DNI, email' + "\n" \
+      '/nueva_venta marca, modelo, año, patente' + "\n" \
+      '/consultar_estado id_intencion_de_venta'
     token = 'fake_token'
     cuando_envio_un_mensaje(token, '/ayuda')
-    entonces_obtengo_el_mensaje(token, 'Comandos disponibles:' + "\n" + '/registrar Nombre, DNI, email' + "\n" + '/nueva_venta marca, modelo, año, patente')
+    entonces_obtengo_el_mensaje(token, mensaje_esperado)
     app = BotClient.new(token)
     app.run_once
   end
 end
+
+# rubocop:enable all

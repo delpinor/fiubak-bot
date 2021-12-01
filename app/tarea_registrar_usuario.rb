@@ -4,7 +4,7 @@ require_relative '../app/api/web_api'
 class TareaRegistrarUsuario
   def procesar(message, datos)
     datos_json = UsuarioParser.new.a_json(datos, message.chat.id)
-    mensaje = WebApi.new('/usuarios').post(datos_json)
-    mensaje
+    web = WebApi.new('/usuarios').post(datos_json)
+    web.mensaje_de_respuesta
   end
 end

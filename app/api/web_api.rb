@@ -6,24 +6,23 @@ class WebApi
   def post(datos_json)
     @response = Faraday.post(@url, datos_json,
                              'Content-Type' => 'application/json')
-    mensaje_de_respuesta!
+    self
   end
 
   def get
     @response = Faraday.get @url
-    valor_de_respuesta
+    self
   end
 
-  private
+  def id_de_respuesta
+    JSON.parse(@response.body)['id']
+  end
 
-  def mensaje_de_respuesta!
+  def mensaje_de_respuesta
     JSON.parse(@response.body)['mensaje']
   end
 
   def valor_de_respuesta
-    data_json = JSON.parse(@response.body)
-    estado = data_json['valor']['estado']
-    id = data_json['valor']['id']
-    "la intencion de venta #{id} se encuentra: #{estado}"
+    JSON.parse(@response.body)['valor']
   end
 end

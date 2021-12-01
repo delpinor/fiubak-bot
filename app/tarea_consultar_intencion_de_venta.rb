@@ -3,7 +3,10 @@ require_relative  '../app/api/web_api'
 
 class TareaConsultarIntencionDeVenta
   def procesar(_message, datos)
-    mensaje = WebApi.new("/intenciones_de_venta/#{datos}").get
-    mensaje
+    req = WebApi.new("/intenciones_de_venta/#{datos}").get
+    data_json = req.valor_de_respuesta
+    estado = data_json['estado']
+    id = data_json['id']
+    "la intencion de venta #{id} se encuentra: #{estado}"
   end
 end
