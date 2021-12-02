@@ -4,14 +4,14 @@ class TareaBusqueda
   def procesar(_message, _datos)
     req = WebApi.new('/publicaciones').get
     data_json = req.valor_de_respuesta_de_busqueda
+    return 'No hay publicaciones disponibles' if data_json.empty?
     result = ''
     data_json.each do |auto|
-      auto_parsed = JSON.parse(auto)
-      result += "id: #{auto_parsed['id']}, " \
-                "marca: #{auto_parsed['marca']}, " \
-                "modelo: #{auto_parsed['modelo']}, " \
-                "año: #{auto_parsed['anio']}, " \
-                "precio: #{auto_parsed['precio']}" + "\n"
+      result += "##{auto[:id]}, " \
+                "marca: #{auto[:marca]}, " \
+                "modelo: #{auto[:modelo]}, " \
+                "anio: #{auto[:anio]}, " \
+                "precio: #{auto[:precio]}" + "\n"
     end
     result
   rescue StandardError

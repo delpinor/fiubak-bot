@@ -43,9 +43,36 @@ describe 'Bot de telegram' do
     mensaje_esperado = 'Comandos disponibles:' + "\n" \
       '/registrar Nombre, DNI, email' + "\n" \
       '/nueva_venta marca, modelo, año, patente' + "\n" \
-      '/consultar_estado id_intencion_de_venta'
+      '/consultar_estado id_intencion_de_venta'  + "\n" \
+      '/busqueda'
     token = 'fake_token'
     cuando_envio_un_mensaje(token, '/ayuda')
+    entonces_obtengo_el_mensaje(token, mensaje_esperado)
+    app = BotClient.new(token)
+    app.run_once
+  end
+
+  it 'Cuando le envio /busqueda al bot entonces obtengo un mensaje de que no hay publicaciones' do
+    token = 'fake_token'
+    publicaciones_mock = []
+    mensaje_esperado = "No hay publicaciones disponibles"
+                       
+    cuando_solicito_la_busqueda_de_publicaciones(token, publicaciones_mock, '/busqueda')
+    entonces_obtengo_el_mensaje(token, mensaje_esperado)
+    app = BotClient.new(token)
+    app.run_once
+  end
+
+  xit 'Cuando le envio /busqueda al bot entonces obtengo las publicaciones' do
+    token = 'fake_token'
+    publicaciones_mock = [
+      {id: 1, marca: "Fiat", modelo: "Uno", anio: 1995, precio: 75000},
+      {id: 2, marca: "Fiat2", modelo: "Uno", anio: 1996, precio: 76000},
+      {id: 3, marca: "Fiat3", modelo: "Uno", anio: 1997, precio: 77000}
+    ]
+    mensaje_esperado = "#1, marca: Fiat, modelo: Uno, anio: 1995, precio: 75000\n #2, marca: Fiat2, modelo: Uno, anio: 1996, precio: 76000\n #3, marca: Fiat3, modelo: Uno, anio: 1997, precio: 77000"
+                       
+    cuando_solicito_la_busqueda_de_publicaciones(token, publicaciones_mock, '/busqueda')
     entonces_obtengo_el_mensaje(token, mensaje_esperado)
     app = BotClient.new(token)
     app.run_once
