@@ -5,6 +5,7 @@ class TareaBusqueda
     req = WebApi.new('/publicaciones').get
     data_json = req.valor_de_respuesta_de_busqueda
     return 'No hay publicaciones disponibles' if data_json.empty?
+
     result = ''
     data_json.each do |auto|
       result += "##{auto[:id]}, " \

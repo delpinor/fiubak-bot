@@ -43,7 +43,8 @@ describe 'Bot de telegram' do
     mensaje_esperado = 'Comandos disponibles:' + "\n" \
       '/registrar Nombre, DNI, email' + "\n" \
       '/nueva_venta marca, modelo, año, patente' + "\n" \
-      '/consultar_estado id_intencion_de_venta'  + "\n" \
+      '/consultar_estado id_intencion_de_venta' + "\n" \
+      '/aceptar_cotizacion id_intencion_de_venta' + "\n" \
       '/busqueda'
     token = 'fake_token'
     cuando_envio_un_mensaje(token, '/ayuda')

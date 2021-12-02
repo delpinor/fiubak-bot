@@ -46,7 +46,6 @@ def entonces_obtengo_el_mensaje(token, message_text)
                        "chat": { "id": 141_733_544, "first_name": 'Nairobi', "last_name": 'Gutter', "username": 'egutter', "type": 'private' },
                        "date": 1_557_782_999, "text": message_text } }
 
-  
   stub_request(:post, "https://api.telegram.org/bot#{token}/sendMessage")
     .with(
       body: { 'chat_id' => '141733544', 'text' => message_text }

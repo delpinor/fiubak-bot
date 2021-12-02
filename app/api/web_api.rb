@@ -9,6 +9,12 @@ class WebApi
     self
   end
 
+  def put(datos_json)
+    @response = Faraday.put(@url, datos_json,
+                            'Content-Type' => 'application/json')
+    self
+  end
+
   def get
     @response = Faraday.get @url
     self
