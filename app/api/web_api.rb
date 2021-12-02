@@ -25,4 +25,8 @@ class WebApi
   def valor_de_respuesta
     JSON.parse(@response.body)['valor']
   end
+
+  def valor_de_respuesta_de_busqueda
+    @response.body
+  end
 end

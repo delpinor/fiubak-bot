@@ -9,6 +9,7 @@ require "#{File.dirname(__FILE__)}/tarea_registrar_usuario"
 require "#{File.dirname(__FILE__)}/tarea_registrar_auto"
 require "#{File.dirname(__FILE__)}/tarea_consultar_intencion_de_venta"
 require "#{File.dirname(__FILE__)}/tarea_saludar"
+require "#{File.dirname(__FILE__)}/tarea_busqueda"
 
 class Routes
   include Routing
@@ -35,6 +36,8 @@ class Routes
   procesar_comando('hola', TareaSaludar.new)
 
   procesar_comando('/ayuda', TareaAyuda.new)
+
+  procesar_comando('/busqueda', TareaBusqueda.new)
 
   procesar_patron(%r{/registrar (?<datos>.*)}, TareaRegistrarUsuario.new)
 
