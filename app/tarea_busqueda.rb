@@ -8,11 +8,11 @@ class TareaBusqueda
 
     result = ''
     data_json.each do |auto|
-      result += "##{auto[:id]}, " \
-                "marca: #{auto[:marca]}, " \
-                "modelo: #{auto[:modelo]}, " \
-                "anio: #{auto[:anio]}, " \
-                "precio: #{auto[:precio]}" + "\n"
+      result += "##{auto['id']}, " \
+                "marca: #{auto['marca']}, " \
+                "modelo: #{auto['modelo']}, " \
+                "año: #{auto['anio']}, " \
+                "precio: #{auto['precio']}" + "\n"
     end
     result
   rescue StandardError

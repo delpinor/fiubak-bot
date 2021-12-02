@@ -40,6 +40,8 @@ class Routes
 
   procesar_comando('/busqueda', TareaBusqueda.new)
 
+  procesar_comando('/búsqueda', TareaBusqueda.new)
+
   procesar_patron(%r{/registrar (?<datos>.*)}, TareaRegistrarUsuario.new)
 
   procesar_patron(%r{/nueva_venta (?<datos>.*)}, TareaRegistrarAuto.new)
