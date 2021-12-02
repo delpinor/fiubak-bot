@@ -26,7 +26,7 @@ describe 'Bot de telegram' do
   it 'Cuando le envio /registrar al bot entonces obtengo un mensaje exitoso ' do
     token = 'fake_token'
     cuando_registro_un_usuario(token, '/registrar Juan, 9999, jua@gmail.com')
-    entonces_obtengo_el_mensaje(token, 'registro exitoso')
+    entonces_obtengo_el_mensaje(token, 'Registro exitoso bajo id: 141733544')
     app = BotClient.new(token)
     app.run_once
   end

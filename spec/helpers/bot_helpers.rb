@@ -74,7 +74,7 @@ def cuando_registro_un_usuario(token, message_text)
         'User-Agent' => 'Faraday v0.15.4'
       }
     )
-    .to_return(status: 200, body: { mensaje: 'registro exitoso' }.to_json, headers: {})
+    .to_return(status: 200, body: { mensaje: 'Registro exitoso bajo id: 141733544' }.to_json, headers: {})
 end
 
 def cuando_registro_el_estado(token, message_text)

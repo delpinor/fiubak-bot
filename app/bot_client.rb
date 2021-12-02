@@ -1,5 +1,5 @@
 require 'telegram/bot'
-require File.dirname(__FILE__) + '/../app/routes'
+require File.dirname(__FILE__) + '/../app/rutas_bot'
 require 'semantic_logger'
 
 class BotClient
@@ -41,6 +41,6 @@ class BotClient
   def handle_message(message, bot)
     @logger.debug "From: @#{message.from.username}, message: #{message.inspect}"
 
-    Routes.new.handle(bot, message)
+    RutasBot.new.handle(bot, message)
   end
 end

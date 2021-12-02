@@ -12,7 +12,7 @@ require "#{File.dirname(__FILE__)}/tarea_saludar"
 require "#{File.dirname(__FILE__)}/tarea_busqueda"
 require "#{File.dirname(__FILE__)}/tarea_aceptar_cotizacion"
 
-class Routes
+class RutasBot
   include Routing
   extend ComandoBot
 
