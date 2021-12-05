@@ -1,5 +1,5 @@
 require_relative '../app/api/web_api'
-require_relative  '../app/helpers/publicacion_parser'
+require_relative '../app/helpers/publicacion_parser'
 
 class TareaPublicarPorP2P
   def procesar(_message, datos)
