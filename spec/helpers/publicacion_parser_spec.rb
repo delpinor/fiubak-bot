@@ -12,4 +12,8 @@ describe 'Publicacion parser' do
   it 'Al parsear tengo el tipo' do
     expect(JSON.parse(publicacion)['tipo']).to eq 'p2p'
   end
+
+  it 'Al parsear tengo el precio' do
+    expect(JSON.parse(publicacion)['precio']).to eq 45_000
+  end
 end
