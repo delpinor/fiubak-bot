@@ -5,6 +5,7 @@ class TareaAyuda
       '/nueva_venta marca, modelo, año, patente' + "\n" \
       '/consultar_estado id_intencion_de_venta' + "\n" \
       '/aceptar_cotizacion id_intencion_de_venta' + "\n" \
-      '/busqueda'
+      '/busqueda' + "\n" \
+      '/publicar id_intencion_de_venta, p2p, precio'
   end
 end

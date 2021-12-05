@@ -45,7 +45,8 @@ describe 'Bot de telegram' do
       '/nueva_venta marca, modelo, año, patente' + "\n" \
       '/consultar_estado id_intencion_de_venta' + "\n" \
       '/aceptar_cotizacion id_intencion_de_venta' + "\n" \
-      '/busqueda'
+      '/busqueda' + "\n" \
+      '/publicar id_intencion_de_venta, p2p, precio'
     token = 'fake_token'
     cuando_envio_un_mensaje(token, '/ayuda')
     entonces_obtengo_el_mensaje(token, mensaje_esperado)
