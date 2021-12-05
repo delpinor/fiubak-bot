@@ -33,7 +33,7 @@ describe 'Bot de telegram' do
 
   it 'Cuando le envio /consultar_estado al bot entonces obtengo el estado de la intencion de venta ' do
     token = 'fake_token'
-    cuando_registro_el_estado(token, '/consultar_estado 21')
+    cuando_consulto_el_estado(token, '/consultar_estado 21')
     entonces_obtengo_el_mensaje(token, 'la intencion de venta 21 se encuentra: en revision')
     app = BotClient.new(token)
     app.run_once
@@ -84,6 +84,14 @@ describe 'Bot de telegram' do
     token = 'fake_token'
     cuando_registro_una_publicacion_por_p2p(token, '/publicar 1,p2p,45000')
     entonces_obtengo_el_mensaje(token, 'La intención de venta 1 se público en formato P2P, cotizada en 45000')
+    app = BotClient.new(token)
+    app.run_once
+  end
+
+  it 'Cuando le envio /consultar_estado al bot con un id de intencion de venta inexistente entonces obtengo respondo con un mensaje de error' do
+    token = 'fake_token'
+    cuando_consulto_el_estado_inexistente(token, '/consultar_estado -1')
+    entonces_obtengo_el_mensaje(token, 'intencion de venta no encontrada')
     app = BotClient.new(token)
     app.run_once
   end

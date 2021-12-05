@@ -77,7 +77,7 @@ def cuando_registro_un_usuario(token, message_text)
     .to_return(status: 200, body: { mensaje: 'Registro exitoso bajo id: 141733544' }.to_json, headers: {})
 end
 
-def cuando_registro_el_estado(token, message_text)
+def cuando_consulto_el_estado(token, message_text)
   body = { "ok": true, "result": [{ "update_id": 693_981_718,
                                     "message": { "message_id": 11,
                                                  "from": { "id": 141_733_544, "is_bot": false, "first_name": 'Nairobi', "last_name": 'Gutter', "username": 'egutter', "language_code": 'en' },
@@ -134,4 +134,28 @@ def cuando_registro_una_publicacion_por_p2p(token, message_text)
       }
     )
     .to_return(status: 200, body: { mensaje: 'La intención de venta 1 se público en formato P2P, cotizada en 45000' }.to_json, headers: {})
+end
+
+def cuando_consulto_el_estado_inexistente(token, message_text)
+  body = { "ok": true, "result": [{ "update_id": 693_981_718,
+                                    "message": { "message_id": 11,
+                                                 "from": { "id": 141_733_544, "is_bot": false, "first_name": 'Nairobi', "last_name": 'Gutter', "username": 'egutter', "language_code": 'en' },
+                                                 "chat": { "id": 141_733_544, "first_name": 'Emilio', "last_name": 'Gutter', "username": 'egutter', "type": 'private' },
+                                                 "date": 1_557_782_998, "text": message_text,
+                                                 "entities": [{ "offset": 0, "length": 6, "type": 'bot_command' }] } }] }
+
+  resultado = {
+    "mensaje": 'intencion de venta no encontrada'
+  }
+  stub_request(:any, "https://api.telegram.org/bot#{token}/getUpdates")
+    .to_return(body: body.to_json, status: 200, headers: { 'Content-Length' => 3 })
+  stub_request(:get, 'https://test.api/intenciones_de_venta/-1')
+    .with(
+      headers: {
+        'Accept' => '*/*',
+        'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+        'User-Agent' => 'Faraday v0.15.4'
+      }
+    )
+    .to_return(status: 200, body: resultado.to_json, headers: {})
 end
