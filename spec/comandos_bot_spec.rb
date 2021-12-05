@@ -78,6 +78,14 @@ describe 'Bot de telegram' do
     app = BotClient.new(token)
     app.run_once
   end
+
+  it 'Cuando le envio un POST /publicaciones al bot entonces obtengo un mensaje de registro exitoso' do
+    token = 'fake_token'
+    cuando_registro_una_publicacion_por_p2p(token, '/publicar 1,p2p,45000')
+    entonces_obtengo_el_mensaje(token, 'La intención de venta 1 se público en formato P2P, cotizada en 45000')
+    app = BotClient.new(token)
+    app.run_once
+  end
 end
 
 # rubocop:enable all
