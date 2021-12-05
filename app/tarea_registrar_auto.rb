@@ -6,8 +6,7 @@ class TareaRegistrarAuto
     datos_json = AutoParser.new.a_json(datos)
     id = message.chat.id
     web = WebApi.new("/usuarios/#{id}/intenciones_de_venta").post(datos_json)
-    id_registro = web.id_de_respuesta
-    "La intencion de venta #{id_registro} se registró con exito"
+    web.mensaje_de_respuesta
   rescue StandardError
     'Ups! Hubo un problema. Verificá los datos.'
   end
