@@ -65,14 +65,14 @@ describe 'Bot de telegram' do
     app.run_once
   end
 
-  xit 'Cuando le envio /busqueda al bot entonces obtengo las publicaciones' do
+  it 'Cuando le envio /busqueda al bot entonces obtengo las publicaciones' do
     token = 'fake_token'
     publicaciones_mock = [
       {id: 1, marca: "Fiat", modelo: "Uno", anio: 1995, precio: 75000},
       {id: 2, marca: "Fiat2", modelo: "Uno", anio: 1996, precio: 76000},
       {id: 3, marca: "Fiat3", modelo: "Uno", anio: 1997, precio: 77000}
     ]
-    mensaje_esperado = "#1, marca: Fiat, modelo: Uno, anio: 1995, precio: 75000\n #2, marca: Fiat2, modelo: Uno, anio: 1996, precio: 76000\n #3, marca: Fiat3, modelo: Uno, anio: 1997, precio: 77000"
+    mensaje_esperado = "#1, marca: Fiat, modelo: Uno, anio: 1995, precio: 75000\n#2, marca: Fiat2, modelo: Uno, anio: 1996, precio: 76000\n#3, marca: Fiat3, modelo: Uno, anio: 1997, precio: 77000\n"
                        
     cuando_solicito_la_busqueda_de_publicaciones(token, publicaciones_mock, '/busqueda')
     entonces_obtengo_el_mensaje(token, mensaje_esperado)
@@ -92,6 +92,14 @@ describe 'Bot de telegram' do
     token = 'fake_token'
     cuando_consulto_el_estado_inexistente(token, '/consultar_estado -1')
     entonces_obtengo_el_mensaje(token, 'intencion de venta no encontrada')
+    app = BotClient.new(token)
+    app.run_once
+  end
+
+  it 'Cuando le envio /compra 1, 35 al bot con una publicacion valida obtengo un mensaje de oferta generada' do
+    token = 'fake_token'
+    cuando_registro_una_oferta_p2p(token, '/compra 1,35')
+    entonces_obtengo_el_mensaje(token, 'Generaste la oferta #1 por Fiat Uno de $35')
     app = BotClient.new(token)
     app.run_once
   end

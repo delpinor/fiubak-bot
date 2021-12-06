@@ -12,6 +12,7 @@ require "#{File.dirname(__FILE__)}/tarea_saludar"
 require "#{File.dirname(__FILE__)}/tarea_busqueda"
 require "#{File.dirname(__FILE__)}/tarea_aceptar_cotizacion"
 require "#{File.dirname(__FILE__)}/tarea_publicar_por_p2p"
+require "#{File.dirname(__FILE__)}/tarea_ofertar_p2p"
 
 class RutasBot
   include Routing
@@ -52,6 +53,8 @@ class RutasBot
   procesar_patron(%r{/aceptar_cotizacion (?<datos>.*)}, TareaAceptarCotizacion.new)
 
   procesar_patron(%r{/publicar (?<datos>.*)}, TareaPublicarPorP2P.new)
+
+  procesar_patron(%r{/compra (?<datos>.*)}, TareaOfertarPorP2P.new)
 
   on_message '/time' do |bot, message|
     bot.api.send_message(chat_id: message.chat.id, text: "La hora actual es, #{Time.now}")

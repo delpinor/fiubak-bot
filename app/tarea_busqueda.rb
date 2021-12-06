@@ -11,7 +11,7 @@ class TareaBusqueda
       result += "##{auto['id']}, " \
                 "marca: #{auto['marca']}, " \
                 "modelo: #{auto['modelo']}, " \
-                "año: #{auto['anio']}, " \
+                "anio: #{auto['anio']}, " \
                 "precio: #{auto['precio']}" + "\n"
     end
     result
