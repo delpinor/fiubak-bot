@@ -8,5 +8,4 @@ describe 'Rechazo oferta parser' do
   it 'Al parsear tengo el id_publicacion' do
     expect(JSON.parse(publicacion)['id_publicacion']).to eq 123
   end
-
 end
