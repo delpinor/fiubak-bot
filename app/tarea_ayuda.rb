@@ -8,6 +8,7 @@ class TareaAyuda
       '/busqueda' + "\n" \
       '/publicar id_intencion_de_venta, p2p, precio' + "\n" \
       '/compra id_publicacion,precio' + "\n" \
-      '/consultar_publicacion id_publicacion'
+      '/consultar_publicacion id_publicacion' + "\n" \
+      '/rechazar_oferta id_publicacion, precio'
   end
 end
