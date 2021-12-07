@@ -2,11 +2,9 @@ require_relative '../app/api/web_api'
 require_relative '../app/helpers/publicacion_parser'
 
 class TareaRechazarOferta
-  def procesar(_message, datos)
-    datos_json = RechazarOfertaParser.new.a_json(datos)
-    pub_id = JSON.parse(datos_json)['id_publicacion']
-    web = WebApi.new("/ofertas/#{pub_id}/rechazar").post(datos_json)
-    web.mensaje_de_respuesta
+  def procesar(_message, id_oferta)
+    respuesta = WebApi.new('/').rechazar_oferta(id_oferta)
+    respuesta
   rescue StandardError
     'Ups! Hubo un problema. Verificá los datos.'
   end

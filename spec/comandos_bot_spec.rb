@@ -93,8 +93,8 @@ describe 'Bot de telegram' do
 
   it 'Cuando le envio un POST ofertas/#{pub_id}/rechazar al bot entonces obtengo un mensaje de rechazo de oferta exitoso' do
     token = 'fake_token'
-    cuando_rechazo_una_oferta(token, '/rechazar_oferta 1,45000')
-    entonces_obtengo_el_mensaje(token, 'La oferta por la publicacion 1 se rechazo con exito, y la publicacion se publica en 45000')
+    cuando_rechazo_una_oferta(token, '/rechazar_oferta 1')
+    entonces_obtengo_el_mensaje(token, 'oferta rechazada con exito')
     app = BotClient.new(token)
     app.run_once
   end
