@@ -117,18 +117,18 @@ end
 
 def cuando_rechazo_una_oferta(token, message_text)
   get_updates_mock(token, message_text)
-  stub_request(:post, 'https://test.api/ofertas/1/rechazar').
-    with(
-      body: "{\"id_publicacion\":1,\"precio\":45000}",
+  stub_request(:post, 'https://test.api/ofertas/1/rechazar')
+    .with(
+      body: '{"id_publicacion":1,"precio":45000}',
       headers: {
-        'Accept'=>'*/*',
-        'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-        'Content-Type'=>'application/json',
-        'User-Agent'=>'Faraday v0.15.4'
-      }).
-    to_return(status: 200, body: { mensaje: 'La oferta por la publicacion 1 se rechazo con exito, y la publicacion se publica en 45000' }.to_json, headers: {})
-
-  end
+        'Accept' => '*/*',
+        'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+        'Content-Type' => 'application/json',
+        'User-Agent' => 'Faraday v0.15.4'
+      }
+    )
+    .to_return(status: 200, body: { mensaje: 'La oferta por la publicacion 1 se rechazo con exito, y la publicacion se publica en 45000' }.to_json, headers: {})
+end
 
 def cuando_consulto_el_estado_inexistente(token, message_text)
   get_updates_mock(token, message_text)
