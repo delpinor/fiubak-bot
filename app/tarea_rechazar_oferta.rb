@@ -4,7 +4,7 @@ require_relative '../app/helpers/publicacion_parser'
 class TareaRechazarOferta
   def procesar(_message, datos)
     datos_json = RechazarOfertaParser.new.a_json(datos)
-    pub_id = datos['id_publicacion']
+    pub_id = JSON.parse(datos_json)['id_publicacion']
     web = WebApi.new("/ofertas/#{pub_id}/rechazar").post(datos_json)
     web.mensaje_de_respuesta
   rescue StandardError

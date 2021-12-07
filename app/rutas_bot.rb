@@ -14,6 +14,7 @@ require "#{File.dirname(__FILE__)}/tarea_aceptar_cotizacion"
 require "#{File.dirname(__FILE__)}/tarea_publicar_por_p2p"
 require "#{File.dirname(__FILE__)}/tarea_ofertar_p2p"
 require "#{File.dirname(__FILE__)}/tarea_consultar_publicacion"
+require "#{File.dirname(__FILE__)}/tarea_rechazar_oferta"
 
 class RutasBot
   include Routing
@@ -54,6 +55,8 @@ class RutasBot
   procesar_patron(%r{/aceptar_cotizacion (?<datos>.*)}, TareaAceptarCotizacion.new)
 
   procesar_patron(%r{/publicar (?<datos>.*)}, TareaPublicarPorP2P.new)
+
+  procesar_patron(%r{/rechazar_oferta (?<datos>.*)}, TareaRechazarOferta.new)
 
   procesar_patron(%r{/compra (?<datos>.*)}, TareaOfertarPorP2P.new)
 
