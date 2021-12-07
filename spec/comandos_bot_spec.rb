@@ -114,4 +114,13 @@ describe 'Bot de telegram' do
     app = BotClient.new(token)
     app.run_once
   end
+
+  it 'Cuando le envio /consultar_publicacion con id inexistente entonces el bot me avisa el error' do
+    token = 'fake_token'
+    mensaje_esperado = "La publicacion no existe"
+    cuando_consulto_el_estado_de_la_publicacion_inexistente(token, '/consultar_publicacion 42')
+    entonces_obtengo_el_mensaje(token, mensaje_esperado)
+    app = BotClient.new(token)
+    app.run_once
+  end
 end

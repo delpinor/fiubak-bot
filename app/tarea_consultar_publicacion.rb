@@ -21,6 +21,8 @@ class TareaConsultarPublicacion
       req.mensaje_de_respuesta
     end
   rescue StandardError
+    return req.mensaje_de_respuesta if req
+
     'Ups! Hubo un problema. Verificá los datos.'
   end
 end
