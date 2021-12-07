@@ -35,4 +35,8 @@ class WebApi
   def valor_de_respuesta_de_busqueda
     JSON.parse(@response.body)
   end
+
+  def valor_de_respuesta_de_publicaciones
+    JSON.parse(@response.body)
+  end
 end

@@ -183,3 +183,37 @@ def cuando_registro_una_oferta_p2p(token, message_text)
     )
     .to_return(status: 200, body: { mensaje: 'Generaste la oferta #1 por Fiat Uno de $35', valor: { id: 1, valor: 35 } }.to_json, headers: {})
 end
+
+def cuando_consulto_el_estado_de_la_publicacion(token, message_text)
+  body = { "ok": true, "result": [{ "update_id": 693_981_718,
+                                    "message": { "message_id": 11,
+                                                 "from": { "id": 141_733_544, "is_bot": false, "first_name": 'Nairobi', "last_name": 'Gutter', "username": 'egutter', "language_code": 'en' },
+                                                 "chat": { "id": 141_733_544, "first_name": 'Emilio', "last_name": 'Gutter', "username": 'egutter', "type": 'private' },
+                                                 "date": 1_557_782_998, "text": message_text,
+                                                 "entities": [{ "offset": 0, "length": 6, "type": 'bot_command' }] } }] }
+  # 21, marca: Fiat, modelo: Uno, anio: 1995, patente: 'MHF-200', precio: 75000\nofertas:\n [#1 monto_ofertado: 45000]
+  resultado = {
+    "id": 21,
+    "marca": 'Fiat',
+    "modelo": 'Uno',
+    "anio": 1995,
+    "patente": 'MHF-200',
+    "precio": 75_000,
+    "ofertas": [
+      { "id": 1, "valor": 45_000 }
+    ]
+  }
+
+  stub_request(:any, "https://api.telegram.org/bot#{token}/getUpdates")
+    .to_return(body: body.to_json, status: 200, headers: { 'Content-Length' => 3 })
+
+  stub_request(:get, 'https://test.api/publicaciones/21')
+    .with(
+      headers: {
+        'Accept' => '*/*',
+        'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+        'User-Agent' => 'Faraday v0.15.4'
+      }
+    )
+    .to_return(status: 200, body: resultado.to_json, headers: {})
+end
