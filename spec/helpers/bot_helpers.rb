@@ -115,6 +115,22 @@ def cuando_registro_una_publicacion_por_p2p(token, message_text)
     .to_return(status: 200, body: { mensaje: 'La intención de venta 1 se público en formato P2P, cotizada en 45000' }.to_json, headers: {})
 end
 
+def cuando_rechazo_una_oferta(token, message_text)
+  get_updates_mock(token, message_text)
+
+  stub_request(:post, 'https://test.api/ofertas/1/rechazar')
+    .with(
+      headers: {
+        'Accept' => '*/*',
+        'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+        'Content-Length' => '0',
+        'Content-Type' => 'application/json',
+        'User-Agent' => 'Faraday v0.15.4'
+      }
+    )
+    .to_return(status: 200, body: { mensaje: 'oferta rechazada con exito' }.to_json, headers: {})
+end
+
 def cuando_consulto_el_estado_inexistente(token, message_text)
   get_updates_mock(token, message_text)
 

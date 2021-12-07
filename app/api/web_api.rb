@@ -20,6 +20,12 @@ class WebApi
     self
   end
 
+  def rechazar_oferta(id_oferta)
+    response = post2("/ofertas/#{id_oferta}/rechazar", nil)
+    respuesta = JSON.parse(response.body)['mensaje']
+    respuesta
+  end
+
   def id_de_respuesta
     JSON.parse(@response.body)['id']
   end
@@ -38,5 +44,15 @@ class WebApi
 
   def valor_de_respuesta_de_publicaciones
     JSON.parse(@response.body)
+  end
+
+  private
+
+  # Este va a reemplazar al post()
+  def post2(url_relativa, json_body)
+    url = ENV['API_HEROKU_URL'] + url_relativa
+    response = Faraday.post(url, json_body,
+                            'Content-Type' => 'application/json')
+    response
   end
 end
