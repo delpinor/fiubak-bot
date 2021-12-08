@@ -49,7 +49,8 @@ describe 'Bot de telegram' do
       '/publicar id_intencion_de_venta, p2p, precio'  + "\n" \
       '/ofertar id_publicacion,precio'   + "\n" \
       '/consultar_publicacion id_publicacion' + "\n" \
-      '/rechazar_oferta id_publicacion'
+      '/rechazar_oferta id_publicacion' + "\n" \
+      '/aceptar_oferta id_publicacion'
     token = 'fake_token'
     cuando_envio_un_mensaje(token, '/ayuda')
     entonces_obtengo_el_mensaje(token, mensaje_esperado)
@@ -95,6 +96,14 @@ describe 'Bot de telegram' do
     token = 'fake_token'
     cuando_rechazo_una_oferta(token, '/rechazar_oferta 1')
     entonces_obtengo_el_mensaje(token, 'oferta rechazada con exito')
+    app = BotClient.new(token)
+    app.run_once
+  end
+
+  it 'Cuando le envio un POST /aceptar_oferta al bot entonces obtengo un mensaje de rechazo de oferta exitoso' do
+    token = 'fake_token'
+    cuando_acepto_una_oferta(token, '/aceptar_oferta 1')
+    entonces_obtengo_el_mensaje(token, 'oferta aceptada con exito')
     app = BotClient.new(token)
     app.run_once
   end

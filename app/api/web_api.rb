@@ -26,6 +26,12 @@ class WebApi
     respuesta
   end
 
+  def aceptar_oferta(id_oferta)
+    response = post2("/ofertas/#{id_oferta}/aceptar", nil)
+    respuesta = JSON.parse(response.body)['mensaje']
+    respuesta
+  end
+
   def id_de_respuesta
     JSON.parse(@response.body)['id']
   end
