@@ -9,7 +9,7 @@ class TareaAyuda
       '/publicar id_intencion_de_venta, p2p, precio' + "\n" \
       '/ofertar id_publicacion,precio' + "\n" \
       '/consultar_publicacion id_publicacion' + "\n" \
-      '/rechazar_oferta id_publicacion' + "\n" \
-      '/aceptar_oferta id_publicacion'
+      '/rechazar_oferta id_oferta' + "\n" \
+      '/aceptar_oferta id_oferta'
   end
 end
