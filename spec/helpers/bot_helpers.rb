@@ -175,7 +175,7 @@ def cuando_consulto_el_estado_de_la_publicacion(token, message_text)
     "patente": 'MHF-200',
     "precio": 75_000,
     "ofertas": [
-      { "id": 1, "valor": 45_000 }
+      { "id": 1, "valor": 75_000, "nombre_comprador": 'Juan' }
     ]
   }
 

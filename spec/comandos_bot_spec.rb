@@ -47,7 +47,7 @@ describe 'Bot de telegram' do
       '/aceptar_cotizacion id_intencion_de_venta' + "\n" \
       '/busqueda' + "\n" \
       '/publicar id_intencion_de_venta, p2p, precio'  + "\n" \
-      '/compra id_publicacion,precio'   + "\n" \
+      '/ofertar id_publicacion,precio'   + "\n" \
       '/consultar_publicacion id_publicacion' + "\n" \
       '/rechazar_oferta id_publicacion'
     token = 'fake_token'
@@ -107,9 +107,9 @@ describe 'Bot de telegram' do
     app.run_once
   end
 
-  it 'Cuando le envio /compra 1, 35 al bot con una publicacion valida obtengo un mensaje de oferta generada' do
+  it 'Cuando le envio /ofertar 1, 35 al bot con una publicacion valida obtengo un mensaje de oferta generada' do
     token = 'fake_token'
-    cuando_registro_una_oferta_p2p(token, '/compra 1,35')
+    cuando_registro_una_oferta_p2p(token, '/ofertar 1,35')
     entonces_obtengo_el_mensaje(token, 'Generaste la oferta #1 por Fiat Uno de $35')
     app = BotClient.new(token)
     app.run_once
@@ -117,7 +117,7 @@ describe 'Bot de telegram' do
 
   it 'Cuando le envio /consultar_publicacion al bot entonces obtengo el detalle de la publicacion' do
     token = 'fake_token'
-    mensaje_esperado = "#21, marca: Fiat, modelo: Uno, anio: 1995, patente: MHF-200, precio: 75000\nofertas:\n* 1 monto_ofertado: 45000\n"
+    mensaje_esperado = "#21, marca: Fiat, modelo: Uno, anio: 1995, patente: MHF-200, precio: 75000\nofertas:\n#1 Juan ofreció el monto de $75000\n"
     cuando_consulto_el_estado_de_la_publicacion(token, '/consultar_publicacion 21')
     entonces_obtengo_el_mensaje(token, mensaje_esperado)
     app = BotClient.new(token)

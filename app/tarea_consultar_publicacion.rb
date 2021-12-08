@@ -14,7 +14,7 @@ class TareaConsultarPublicacion
       result = "##{id_publicacion}, marca: #{marca}, modelo: #{modelo}, anio: #{anio}, patente: #{patente}, precio: #{precio}\n"
       result += "ofertas:\n"
       data_json['ofertas'].each do |oferta|
-        result += "* #{oferta['id']} monto_ofertado: #{oferta['valor']}" + "\n"
+        result += "##{oferta['id']} #{oferta['nombre_comprador']} ofreció el monto de $#{oferta['valor']}" + "\n"
       end
       result
     else

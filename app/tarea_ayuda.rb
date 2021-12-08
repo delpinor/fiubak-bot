@@ -7,7 +7,7 @@ class TareaAyuda
       '/aceptar_cotizacion id_intencion_de_venta' + "\n" \
       '/busqueda' + "\n" \
       '/publicar id_intencion_de_venta, p2p, precio' + "\n" \
-      '/compra id_publicacion,precio' + "\n" \
+      '/ofertar id_publicacion,precio' + "\n" \
       '/consultar_publicacion id_publicacion' + "\n" \
       '/rechazar_oferta id_publicacion'
   end
