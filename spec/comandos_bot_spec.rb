@@ -72,11 +72,11 @@ describe 'Bot de telegram' do
   it 'Cuando le envio /busqueda al bot entonces obtengo las publicaciones' do
     token = 'fake_token'
     publicaciones_mock = [
-      {id: 1, marca: "Fiat", modelo: "Uno", anio: 1995, precio: 75000},
-      {id: 2, marca: "Fiat2", modelo: "Uno", anio: 1996, precio: 76000},
-      {id: 3, marca: "Fiat3", modelo: "Uno", anio: 1997, precio: 77000}
+      {id: 1, marca: "Fiat", modelo: "Uno", anio: 1995, precio: 75000, tipo: "Fiubak"},
+      {id: 2, marca: "Fiat2", modelo: "Uno", anio: 1996, precio: 76000, tipo: "Fiubak"},
+      {id: 3, marca: "Fiat3", modelo: "Uno", anio: 1997, precio: 77000, tipo: "Fiubak"}
     ]
-    mensaje_esperado = "#1, marca: Fiat, modelo: Uno, anio: 1995, precio: 75000\n#2, marca: Fiat2, modelo: Uno, anio: 1996, precio: 76000\n#3, marca: Fiat3, modelo: Uno, anio: 1997, precio: 77000\n"
+    mensaje_esperado = "#1, marca: Fiat, modelo: Uno, año: 1995, precio: 75000, tipo de publicación: Fiubak\n#2, marca: Fiat2, modelo: Uno, año: 1996, precio: 76000, tipo de publicación: Fiubak\n#3, marca: Fiat3, modelo: Uno, año: 1997, precio: 77000, tipo de publicación: Fiubak\n"
                        
     cuando_solicito_la_busqueda_de_publicaciones(token, publicaciones_mock, '/busqueda')
     entonces_obtengo_el_mensaje(token, mensaje_esperado)
