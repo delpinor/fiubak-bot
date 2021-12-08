@@ -11,8 +11,9 @@ class TareaBusqueda
       result += "##{auto['id']}, " \
                 "marca: #{auto['marca']}, " \
                 "modelo: #{auto['modelo']}, " \
-                "anio: #{auto['anio']}, " \
-                "precio: #{auto['precio']}" + "\n"
+                "año: #{auto['anio']}, " \
+                "precio: #{auto['precio']}, " \
+                "tipo de publicación: #{auto['tipo']}" + "\n"
     end
     result
   rescue StandardError
