@@ -20,6 +20,12 @@ class WebApi
     self
   end
 
+  def ofertar_p2p(id_usuario, datos_oferta)
+    oferta_json, id_publicacion = OfertaParser.new.a_json(datos_oferta, id_usuario)
+    response = post2("/publicaciones/#{id_publicacion}/ofertas", oferta_json)
+    mensaje_de_respuesta2(response)
+  end
+
   def publicar_p2p(_id_usuario, datos_publicacion)
     pub_json = PublicacionParser.new.a_json(datos_publicacion)
     response = post2('/publicaciones', pub_json)
