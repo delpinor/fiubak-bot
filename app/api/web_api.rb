@@ -20,16 +20,20 @@ class WebApi
     self
   end
 
+  def registrar_usuario(id_usuario, datos_usuario)
+    datos_json = UsuarioParser.new.a_json(datos_usuario, id_usuario)
+    response = post2('/usuarios', datos_json)
+    mensaje_de_respuesta2(response)
+  end
+
   def rechazar_oferta(id_oferta)
     response = post2("/ofertas/#{id_oferta}/rechazar", nil)
-    respuesta = JSON.parse(response.body)['mensaje']
-    respuesta
+    mensaje_de_respuesta2(response)
   end
 
   def aceptar_oferta(id_oferta)
     response = post2("/ofertas/#{id_oferta}/aceptar", nil)
-    respuesta = JSON.parse(response.body)['mensaje']
-    respuesta
+    mensaje_de_respuesta2(response)
   end
 
   def id_de_respuesta
@@ -60,5 +64,9 @@ class WebApi
     response = Faraday.post(url, json_body,
                             'Content-Type' => 'application/json')
     response
+  end
+
+  def mensaje_de_respuesta2(response)
+    JSON.parse(response.body)['mensaje']
   end
 end
