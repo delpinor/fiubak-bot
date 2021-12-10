@@ -20,9 +20,15 @@ class WebApi
     self
   end
 
+  def registrar_auto(id_usuario, datos_auto)
+    auto_json = AutoParser.new.a_json(datos_auto)
+    response = post2("/usuarios/#{id_usuario}/intenciones_de_venta", auto_json)
+    mensaje_de_respuesta2(response)
+  end
+
   def registrar_usuario(id_usuario, datos_usuario)
-    datos_json = UsuarioParser.new.a_json(datos_usuario, id_usuario)
-    response = post2('/usuarios', datos_json)
+    usuario_json = UsuarioParser.new.a_json(datos_usuario, id_usuario)
+    response = post2('/usuarios', usuario_json)
     mensaje_de_respuesta2(response)
   end
 
