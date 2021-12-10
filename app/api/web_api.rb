@@ -20,6 +20,12 @@ class WebApi
     self
   end
 
+  def publicar_p2p(_id_usuario, datos_publicacion)
+    pub_json = PublicacionParser.new.a_json(datos_publicacion)
+    response = post2('/publicaciones', pub_json)
+    mensaje_de_respuesta2(response)
+  end
+
   def registrar_auto(id_usuario, datos_auto)
     auto_json = AutoParser.new.a_json(datos_auto)
     response = post2("/usuarios/#{id_usuario}/intenciones_de_venta", auto_json)
@@ -32,7 +38,7 @@ class WebApi
     mensaje_de_respuesta2(response)
   end
 
-  def rechazar_oferta(id_oferta)
+  def rechazar_oferta(_id_usuario, id_oferta)
     response = post2("/ofertas/#{id_oferta}/rechazar", nil)
     mensaje_de_respuesta2(response)
   end

@@ -3,10 +3,9 @@ require_relative '../app/helpers/publicacion_parser'
 require_relative '../app/tarea'
 
 class TareaPublicarPorP2P < Tarea
-  def procesar(_message, datos)
-    datos_json = PublicacionParser.new.a_json(datos)
-    web = WebApi.new('/publicaciones').post(datos_json)
-    web.mensaje_de_respuesta
+  def procesar(message, datos_publicacion)
+    respuesta = WebApi.new('/').publicar_p2p(message.chat.id, datos_publicacion)
+    respuesta
   rescue StandardError
     'Ups! Hubo un problema. Verificá los datos.'
   end
