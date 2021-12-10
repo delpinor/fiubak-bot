@@ -1,7 +1,8 @@
 require_relative '../app/helpers/usuario_parser'
 require_relative '../app/api/web_api'
+require_relative '../app/tarea'
 
-class TareaRegistrarUsuario
+class TareaRegistrarUsuario < Tarea
   def procesar(message, datos)
     datos_json = UsuarioParser.new.a_json(datos, message.chat.id)
     web = WebApi.new('/usuarios').post(datos_json)

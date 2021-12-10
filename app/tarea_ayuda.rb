@@ -1,4 +1,6 @@
-class TareaAyuda
+require_relative '../app/tarea'
+
+class TareaAyuda < Tarea
   def procesar(_message, _datos = nil)
     'Comandos disponibles:' + "\n" \
       '/registrar Nombre, DNI, email' + "\n" \

@@ -1,7 +1,8 @@
 require_relative  '../app/helpers/auto_parser'
 require_relative  '../app/api/web_api'
+require_relative '../app/tarea'
 
-class TareaConsultarIntencionDeVenta
+class TareaConsultarIntencionDeVenta < Tarea
   def procesar(_message, datos)
     req = WebApi.new("/intenciones_de_venta/#{datos}").get
     data_json = req.valor_de_respuesta

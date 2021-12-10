@@ -1,6 +1,7 @@
 require_relative '../app/api/web_api'
+require_relative '../app/tarea'
 
-class TareaBusqueda
+class TareaBusqueda < Tarea
   def procesar(_message, _datos)
     req = WebApi.new('/publicaciones').get
     data_json = req.valor_de_respuesta_de_busqueda
