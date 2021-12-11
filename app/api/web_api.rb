@@ -48,19 +48,24 @@ class WebApi
 
   def post(url_relativa, json_body)
     url = ENV['API_HEROKU_URL'] + url_relativa
-    response = Faraday.post(url, json_body, 'Content-Type' => 'application/json')
+    response = Faraday.post(url, json_body, header)
     JSON.parse(response.body)
   end
 
   def put(url_relativa, json_body)
     url = ENV['API_HEROKU_URL'] + url_relativa
-    response = Faraday.put(url, json_body, 'Content-Type' => 'application/json')
+    response = Faraday.put(url, json_body, header)
     JSON.parse(response.body)
   end
 
   def get(url_relativa)
     url = ENV['API_HEROKU_URL'] + url_relativa
-    response = Faraday.get(url)
+    response = Faraday.get(url, nil, header)
     JSON.parse(response.body)
+  end
+
+  def header
+    { 'CONTENT_TYPE' => 'application/json',
+      'HTTP_BOT_TOKEN' => ENV['HTTP_BOT_TOKEN'] }
   end
 end

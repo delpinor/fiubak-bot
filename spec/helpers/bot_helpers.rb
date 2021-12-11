@@ -60,11 +60,11 @@ def cuando_registro_un_usuario(token, message_text)
 
   stub_request(:post, 'https://test.api/usuarios')
     .with(
-      body: '{"id":141733544,"nombre":"Juan","dni":9999,"email":"jua@gmail.com"}',
+      body: { '{"id":141733544,"nombre":"Juan","dni":9999,"email":"jua@gmail.com"}' => nil },
       headers: {
         'Accept' => '*/*',
         'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-        'Content-Type' => 'application/json',
+        'Content-Type' => 'application/x-www-form-urlencoded',
         'User-Agent' => 'Faraday v0.15.4'
       }
     )
@@ -104,11 +104,11 @@ def cuando_registro_una_publicacion_por_p2p(token, message_text)
 
   stub_request(:post, 'https://test.api/publicaciones')
     .with(
-      body: '{"id_intencion_de_venta":1,"tipo":"p2p","precio":45000}',
+      body: { '{"id_intencion_de_venta":1,"tipo":"p2p","precio":45000}' => nil },
       headers: {
         'Accept' => '*/*',
         'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-        'Content-Type' => 'application/json',
+        'Content-Type' => 'application/x-www-form-urlencoded',
         'User-Agent' => 'Faraday v0.15.4'
       }
     )
@@ -169,11 +169,11 @@ def cuando_registro_una_oferta_p2p(token, message_text)
 
   stub_request(:post, 'https://test.api/publicaciones/1/ofertas')
     .with(
-      body: '{"id_usuario":141733544,"valor":35}',
+      body: { '{"id_usuario":141733544,"valor":35}' => nil },
       headers: {
         'Accept' => '*/*',
         'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-        'Content-Type' => 'application/json',
+        'Content-Type' => 'application/x-www-form-urlencoded',
         'User-Agent' => 'Faraday v0.15.4'
       }
     )
