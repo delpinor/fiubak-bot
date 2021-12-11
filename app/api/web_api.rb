@@ -20,6 +20,11 @@ class WebApi
     self
   end
 
+  def aceptar_cotizacion(_id_usuario, id_intencion)
+    cotizacion_json = { id_intencion: id_intencion }.to_json
+    put2('/aceptar_cotizacion', cotizacion_json)
+  end
+
   def obtener_publicaciones
     get2('/publicaciones')
   end
@@ -90,6 +95,12 @@ class WebApi
   def post2(url_relativa, json_body)
     url = ENV['API_HEROKU_URL'] + url_relativa
     response = Faraday.post(url, json_body, 'Content-Type' => 'application/json')
+    JSON.parse(response.body)
+  end
+
+  def put2(url_relativa, json_body)
+    url = ENV['API_HEROKU_URL'] + url_relativa
+    response = Faraday.put(url, json_body, 'Content-Type' => 'application/json')
     JSON.parse(response.body)
   end
 

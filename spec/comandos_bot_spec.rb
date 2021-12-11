@@ -18,7 +18,7 @@ describe 'Bot de telegram' do
   it 'Cuando le envio hola, entonces el bot response Hola' do
     token = 'fake_token'
     cuando_envio_un_mensaje(token, 'hola')
-    entonces_obtengo_el_mensaje(token, 'Hola Nairobi')
+    entonces_obtengo_el_mensaje(token, 'Hola Nairobi 😃')
     app = BotClient.new(token)
     app.run_once
   end

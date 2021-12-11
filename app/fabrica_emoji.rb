@@ -8,6 +8,7 @@ class FabricaEmoji
              rechazado: "\u{1F6AB}",
              publicado: "\u{1F4E2}",
              triste: "\u{1F614}",
+             alegre: "\u{1F603}",
              ayuda: "\u{1F481}" }.freeze
   def self.emoji(tipo)
     EMOJIS[tipo]
