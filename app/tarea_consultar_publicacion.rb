@@ -1,11 +1,8 @@
 require_relative '../app/api/web_api'
 require_relative '../app/tarea'
+require_relative '../app/fabrica_emoji'
 
 class TareaConsultarPublicacion < Tarea
-  EMOJI_PLATA = "\u{1F4B2}".freeze
-  EMOJI_AUTO = "\u{1F697}".freeze
-  EMOJI_ITEM = "\u{27A1}".freeze
-
   def procesar(message, id_publicacion)
     respuesta = WebApi.new('/').obtener_publicacion(message.chat.id, id_publicacion)
     if respuesta.key?('id')
@@ -15,7 +12,7 @@ class TareaConsultarPublicacion < Tarea
       anio = respuesta['anio']
       patente = respuesta['patente']
       precio = respuesta['precio']
-      titulo = "Datos del auto: #{EMOJI_AUTO} \n \n" \
+      titulo = "Datos del auto: #{FabricaEmoji.emoji(:auto)} \n \n" \
                "Id. Publicación: #{id_publicacion}" + "\n" \
                "Marca: #{marca}" + "\n" \
                "Modelo: #{modelo}" + "\n" \
@@ -33,9 +30,9 @@ class TareaConsultarPublicacion < Tarea
   private
 
   def listar_ofertas(ofertas)
-    resultado = "Ofertas recibidas: #{EMOJI_PLATA} \n \n"
+    resultado = "Ofertas recibidas: #{FabricaEmoji.emoji(:plata)} \n \n"
     ofertas.each do |oferta|
-      resultado += "#{EMOJI_ITEM} Nro. #{oferta['id']}: #{oferta['nombre_comprador']} ofreció el monto de $#{oferta['valor']}" + "\n"
+      resultado += "#{FabricaEmoji.emoji(:item)} Nro. #{oferta['id']}: #{oferta['nombre_comprador']} ofreció el monto de $#{oferta['valor']}" + "\n"
     end
     resultado
   end
