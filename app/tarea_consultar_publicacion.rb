@@ -2,28 +2,41 @@ require_relative '../app/api/web_api'
 require_relative '../app/tarea'
 
 class TareaConsultarPublicacion < Tarea
-  def procesar(_message, datos)
-    req = WebApi.new("/publicaciones/#{datos}").get
-    data_json = req.valor_de_respuesta_de_publicaciones
-    if !data_json.nil?
-      id_publicacion = data_json['id']
-      marca = data_json['marca']
-      modelo = data_json['modelo']
-      anio = data_json['anio']
-      patente = data_json['patente']
-      precio = data_json['precio']
-      result = "##{id_publicacion}, marca: #{marca}, modelo: #{modelo}, anio: #{anio}, patente: #{patente}, precio: #{precio}\n"
-      result += "ofertas:\n"
-      data_json['ofertas'].each do |oferta|
-        result += "##{oferta['id']} #{oferta['nombre_comprador']} ofreció el monto de $#{oferta['valor']}" + "\n"
-      end
-      result
+  EMOJI_PLATA = "\u{1F4B2}".freeze
+  EMOJI_AUTO = "\u{1F697}".freeze
+  EMOJI_ITEM = "\u{27A1}".freeze
+
+  def procesar(message, id_publicacion)
+    respuesta = WebApi.new('/').obtener_publicacion(message.chat.id, id_publicacion)
+    if respuesta.key?('id')
+      id_publicacion = respuesta['id']
+      marca = respuesta['marca']
+      modelo = respuesta['modelo']
+      anio = respuesta['anio']
+      patente = respuesta['patente']
+      precio = respuesta['precio']
+      titulo = "Datos del auto: #{EMOJI_AUTO} \n \n" \
+               "Id. Publicación: #{id_publicacion}" + "\n" \
+               "Marca: #{marca}" + "\n" \
+               "Modelo: #{modelo}" + "\n" \
+               "Patente: #{patente}" + "\n" \
+               "Año: #{anio}" + "\n" \
+               "Precio: $#{precio}" + "\n"
+      titulo + "\n" + listar_ofertas(respuesta['ofertas'])
     else
-      req.mensaje_de_respuesta
+      respuesta['mensaje']
     end
   rescue StandardError
-    return req.mensaje_de_respuesta if req
-
     'Ups! Hubo un problema. Verificá los datos.'
+  end
+
+  private
+
+  def listar_ofertas(ofertas)
+    resultado = "Ofertas recibidas: #{EMOJI_PLATA} \n \n"
+    ofertas.each do |oferta|
+      resultado += "#{EMOJI_ITEM} Nro. #{oferta['id']}: #{oferta['nombre_comprador']} ofreció el monto de $#{oferta['valor']}" + "\n"
+    end
+    resultado
   end
 end

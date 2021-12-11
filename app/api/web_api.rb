@@ -20,7 +20,7 @@ class WebApi
     self
   end
 
-  def obtener_publicaciones(_id_usuario, id_publicacion)
+  def obtener_publicacion(_id_usuario, id_publicacion)
     get2("/publicaciones/#{id_publicacion}")
   end
 

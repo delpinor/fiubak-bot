@@ -126,7 +126,7 @@ describe 'Bot de telegram' do
 
   it 'Cuando le envio /consultar_publicacion al bot entonces obtengo el detalle de la publicacion' do
     token = 'fake_token'
-    mensaje_esperado = "#21, marca: Fiat, modelo: Uno, anio: 1995, patente: MHF-200, precio: 75000\nofertas:\n#1 Juan ofreció el monto de $75000\n"
+    mensaje_esperado = "Datos del auto: 🚗 \n \nId. Publicación: 21\nMarca: Fiat\nModelo: Uno\nPatente: MHF-200\nAño: 1995\nPrecio: $75000\n\nOfertas recibidas: 💲 \n \n➡ Nro. 1: Juan ofreció el monto de $75000\n"
     cuando_consulto_el_estado_de_la_publicacion(token, '/consultar_publicacion 21')
     entonces_obtengo_el_mensaje(token, mensaje_esperado)
     app = BotClient.new(token)
