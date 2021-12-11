@@ -20,38 +20,36 @@ class WebApi
     self
   end
 
+  def obtener_publicaciones(_id_usuario, id_publicacion)
+    get2("/publicaciones/#{id_publicacion}")
+  end
+
   def ofertar_p2p(id_usuario, datos_oferta)
     oferta_json, id_publicacion = OfertaParser.new.a_json(datos_oferta, id_usuario)
-    response = post2("/publicaciones/#{id_publicacion}/ofertas", oferta_json)
-    mensaje_de_respuesta2(response)
+    post2("/publicaciones/#{id_publicacion}/ofertas", oferta_json)
   end
 
   def publicar_p2p(_id_usuario, datos_publicacion)
     pub_json = PublicacionParser.new.a_json(datos_publicacion)
-    response = post2('/publicaciones', pub_json)
-    mensaje_de_respuesta2(response)
+    post2('/publicaciones', pub_json)
   end
 
   def registrar_auto(id_usuario, datos_auto)
     auto_json = AutoParser.new.a_json(datos_auto)
-    response = post2("/usuarios/#{id_usuario}/intenciones_de_venta", auto_json)
-    mensaje_de_respuesta2(response)
+    post2("/usuarios/#{id_usuario}/intenciones_de_venta", auto_json)
   end
 
   def registrar_usuario(id_usuario, datos_usuario)
     usuario_json = UsuarioParser.new.a_json(datos_usuario, id_usuario)
-    response = post2('/usuarios', usuario_json)
-    mensaje_de_respuesta2(response)
+    post2('/usuarios', usuario_json)
   end
 
   def rechazar_oferta(_id_usuario, id_oferta)
-    response = post2("/ofertas/#{id_oferta}/rechazar", nil)
-    mensaje_de_respuesta2(response)
+    post2("/ofertas/#{id_oferta}/rechazar", nil)
   end
 
   def aceptar_oferta(id_oferta)
-    response = post2("/ofertas/#{id_oferta}/aceptar", nil)
-    mensaje_de_respuesta2(response)
+    post2("/ofertas/#{id_oferta}/aceptar", nil)
   end
 
   def id_de_respuesta
@@ -74,17 +72,22 @@ class WebApi
     JSON.parse(@response.body)
   end
 
+  def mensaje_de_respuesta2(response)
+    JSON.parse(response.body)['mensaje']
+  end
+
   private
 
   # Este va a reemplazar al post()
   def post2(url_relativa, json_body)
     url = ENV['API_HEROKU_URL'] + url_relativa
-    response = Faraday.post(url, json_body,
-                            'Content-Type' => 'application/json')
-    response
+    response = Faraday.post(url, json_body, 'Content-Type' => 'application/json')
+    JSON.parse(response.body)
   end
 
-  def mensaje_de_respuesta2(response)
-    JSON.parse(response.body)['mensaje']
+  def get2(url_relativa)
+    url = ENV['API_HEROKU_URL'] + url_relativa
+    response = Faraday.get(url)
+    JSON.parse(response.body)
   end
 end

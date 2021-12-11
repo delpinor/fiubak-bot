@@ -5,7 +5,7 @@ require_relative '../app/tarea'
 class TareaOfertarPorP2P < Tarea
   def procesar(message, datos_oferta)
     respuesta = WebApi.new('/').ofertar_p2p(message.chat.id, datos_oferta)
-    respuesta
+    respuesta['mensaje']
   rescue StandardError
     'Ups! Hubo un problema. Verificá los datos.'
   end
