@@ -3,20 +3,20 @@ require_relative '../app/tarea'
 
 class TareaBusqueda < Tarea
   def procesar(_message, _datos)
-    req = WebApi.new('/publicaciones').get
-    data_json = req.valor_de_respuesta_de_busqueda
-    return 'No hay publicaciones disponibles' if data_json.empty?
+    respuesta = WebApi.new('/').obtener_publicaciones
+    return "No hay publicaciones disponibles #{FabricaEmoji.emoji(:triste)}" if respuesta.empty?
 
-    result = ''
-    data_json.each do |auto|
-      result += "##{auto['id']}, " \
-                "marca: #{auto['marca']}, " \
-                "modelo: #{auto['modelo']}, " \
-                "año: #{auto['anio']}, " \
-                "precio: #{auto['precio']}, " \
-                "tipo de publicación: #{auto['tipo']}" + "\n"
+    resultado = "#{FabricaEmoji.emoji(:auto)} Auto publicados: " + "\n \n"
+    respuesta.each do |auto|
+      resultado += "#{FabricaEmoji.emoji(:item)}" \
+                   "Id. de publicación: #{auto['id']}" + "\n" \
+                   "Marca: #{auto['marca']}" + "\n" \
+                   "Modelo: #{auto['modelo']}" + "\n" \
+                   "Año: #{auto['anio']}" + "\n" \
+                   "Precio: $#{auto['precio']}" + "\n" \
+                   "Tipo de publicación: #{auto['tipo']}" + "\n \n"
     end
-    result
+    resultado
   rescue StandardError
     'Ups! Hubo un problema. Verificá los datos.'
   end

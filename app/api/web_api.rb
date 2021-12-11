@@ -20,6 +20,10 @@ class WebApi
     self
   end
 
+  def obtener_publicaciones
+    get2('/publicaciones')
+  end
+
   def consultar_intencion_de_venta(_id_usuario, id_intencion)
     get2("/intenciones_de_venta/#{id_intencion}")
   end

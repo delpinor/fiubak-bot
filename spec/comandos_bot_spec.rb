@@ -61,7 +61,7 @@ describe 'Bot de telegram' do
   it 'Cuando le envio /busqueda al bot entonces obtengo un mensaje de que no hay publicaciones' do
     token = 'fake_token'
     publicaciones_mock = []
-    mensaje_esperado = "No hay publicaciones disponibles"
+    mensaje_esperado = "No hay publicaciones disponibles 😔"
                        
     cuando_solicito_la_busqueda_de_publicaciones(token, publicaciones_mock, '/busqueda')
     entonces_obtengo_el_mensaje(token, mensaje_esperado)
@@ -76,7 +76,7 @@ describe 'Bot de telegram' do
       {id: 2, marca: "Fiat2", modelo: "Uno", anio: 1996, precio: 76000, tipo: "Fiubak"},
       {id: 3, marca: "Fiat3", modelo: "Uno", anio: 1997, precio: 77000, tipo: "Fiubak"}
     ]
-    mensaje_esperado = "#1, marca: Fiat, modelo: Uno, año: 1995, precio: 75000, tipo de publicación: Fiubak\n#2, marca: Fiat2, modelo: Uno, año: 1996, precio: 76000, tipo de publicación: Fiubak\n#3, marca: Fiat3, modelo: Uno, año: 1997, precio: 77000, tipo de publicación: Fiubak\n"
+    mensaje_esperado = "🚗 Auto publicados: \n \n➡Id. de publicación: 1\nMarca: Fiat\nModelo: Uno\nAño: 1995\nPrecio: $75000\nTipo de publicación: Fiubak\n \n➡Id. de publicación: 2\nMarca: Fiat2\nModelo: Uno\nAño: 1996\nPrecio: $76000\nTipo de publicación: Fiubak\n \n➡Id. de publicación: 3\nMarca: Fiat3\nModelo: Uno\nAño: 1997\nPrecio: $77000\nTipo de publicación: Fiubak\n \n"
                        
     cuando_solicito_la_busqueda_de_publicaciones(token, publicaciones_mock, '/busqueda')
     entonces_obtengo_el_mensaje(token, mensaje_esperado)

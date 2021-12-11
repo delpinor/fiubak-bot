@@ -6,7 +6,8 @@ class FabricaEmoji
              revisado_cotizado: "\u{1F4B5}",
              vendido: "\u{1F91D}",
              rechazado: "\u{1F6AB}",
-             publicado: "\u{1F4E2}" }.freeze
+             publicado: "\u{1F4E2}",
+             triste: "\u{1F614}" }.freeze
   def self.emoji(tipo)
     EMOJIS[tipo]
   end
