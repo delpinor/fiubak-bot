@@ -4,7 +4,7 @@ require_relative '../app/tarea'
 
 class TareaConsultarIntencionDeVenta < Tarea
   def procesar(message, id_intencion)
-    respuesta = WebApi.new('/').consultar_intencion_de_venta(message.chat.id, id_intencion)
+    respuesta = WebApi.new.consultar_intencion_de_venta(message.chat.id, id_intencion)
     if respuesta.key?('valor')
       intencion_de_venta = respuesta['valor']
       estado = intencion_de_venta['estado']

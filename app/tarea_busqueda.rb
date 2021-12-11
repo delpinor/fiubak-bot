@@ -3,7 +3,7 @@ require_relative '../app/tarea'
 
 class TareaBusqueda < Tarea
   def procesar(_message, _datos)
-    respuesta = WebApi.new('/').obtener_publicaciones
+    respuesta = WebApi.new.obtener_publicaciones
     return "No hay publicaciones disponibles #{FabricaEmoji.emoji(:triste)}" if respuesta.empty?
 
     resultado = "#{FabricaEmoji.emoji(:auto)} Auto publicados: " + "\n \n"

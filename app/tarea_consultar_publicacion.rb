@@ -4,7 +4,7 @@ require_relative '../app/fabrica_emoji'
 
 class TareaConsultarPublicacion < Tarea
   def procesar(message, id_publicacion)
-    respuesta = WebApi.new('/').obtener_publicacion(message.chat.id, id_publicacion)
+    respuesta = WebApi.new.obtener_publicacion(message.chat.id, id_publicacion)
     if respuesta.key?('id')
       id_publicacion = respuesta['id']
       marca = respuesta['marca']
