@@ -2,7 +2,7 @@ require_relative '../app/tarea'
 
 class TareaAyuda < Tarea
   def procesar(_message, _datos = nil)
-    'Comandos disponibles:' + "\n" \
+    "#{FabricaEmoji.emoji(:ayuda)} Comandos disponibles:" + "\n \n" \
       '/registrar Nombre, DNI, email' + "\n" \
       '/nueva_venta marca, modelo, año, patente' + "\n" \
       '/consultar_estado id_intencion_de_venta' + "\n" \

@@ -7,7 +7,8 @@ class FabricaEmoji
              vendido: "\u{1F91D}",
              rechazado: "\u{1F6AB}",
              publicado: "\u{1F4E2}",
-             triste: "\u{1F614}" }.freeze
+             triste: "\u{1F614}",
+             ayuda: "\u{1F481}" }.freeze
   def self.emoji(tipo)
     EMOJIS[tipo]
   end
