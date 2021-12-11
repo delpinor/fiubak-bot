@@ -34,7 +34,7 @@ describe 'Bot de telegram' do
   it 'Cuando le envio /consultar_estado al bot entonces obtengo el estado de la intencion de venta ' do
     token = 'fake_token'
     cuando_consulto_el_estado(token, '/consultar_estado 21')
-    entonces_obtengo_el_mensaje(token, 'la intencion de venta 21 se encuentra: en revision')
+    entonces_obtengo_el_mensaje(token, 'La intención de venta 21 se encuentra: en revision ')
     app = BotClient.new(token)
     app.run_once
   end
