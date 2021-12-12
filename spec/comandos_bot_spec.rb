@@ -114,6 +114,14 @@ describe 'Bot de telegram' do
     app.run_once
   end
 
+  it 'Cuando le envio /test_drive 1 al bot con una publicacion valida obtengo un mensaje de oferta generada' do
+    token = 'fake_token'
+    cuando_solicito_un_test_drive(token, '/test_drive 1')
+    entonces_obtengo_el_mensaje(token, 'Test-drive para el día de hoy contratado con éxito. Deberá abonar una suma de $12')
+    app = BotClient.new(token)
+    app.run_once
+  end
+
   it 'Cuando le envio /consultar_publicacion al bot entonces obtengo el detalle de la publicacion' do
     token = 'fake_token'
     mensaje_esperado = "Datos del auto: 🚗 \n \nId. Publicación: 21\nMarca: Fiat\nModelo: Uno\nPatente: MHF-200\nAño: 1995\nPrecio: $75000\n\nOfertas recibidas: 💲 \n \n➡ Nro. 1: Juan ofreció el monto de $75000\n"

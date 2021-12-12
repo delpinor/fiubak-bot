@@ -21,6 +21,10 @@ class WebApi
     post("/publicaciones/#{id_publicacion}/ofertas", oferta_json)
   end
 
+  def solicitar_test_drive(_id_usuario, id_publicacion)
+    post("/publicaciones/#{id_publicacion}/test_drives", nil)
+  end
+
   def publicar_p2p(_id_usuario, datos_publicacion)
     pub_json = PublicacionParser.new.a_json(datos_publicacion)
     post('/publicaciones', pub_json)
