@@ -66,6 +66,6 @@ class WebApi
 
   def header
     { 'CONTENT_TYPE' => 'application/json',
-      'HTTP_BOT_TOKEN' => ENV['HTTP_BOT_TOKEN'] }
+      'BOT_TOKEN' => ENV['BOT_TOKEN'] }
   end
 end
