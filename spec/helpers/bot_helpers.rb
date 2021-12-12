@@ -180,6 +180,22 @@ def cuando_registro_una_oferta_p2p(token, message_text)
     .to_return(status: 200, body: { mensaje: 'Generaste la oferta #1 por Fiat Uno de $35', valor: { id: 1, valor: 35 } }.to_json, headers: {})
 end
 
+def cuando_solicito_un_test_drive(token, message_text)
+  get_updates_mock(token, message_text)
+
+  stub_request(:post, 'https://test.api/publicaciones/1/test_drives')
+    .with(
+      headers: {
+        'Accept' => '*/*',
+        'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+        'Content-Length' => '0',
+        'Content-Type' => 'application/json',
+        'User-Agent' => 'Faraday v0.15.4'
+      }
+    )
+    .to_return(status: 200, body: { mensaje: 'Test-drive para el día de hoy contratado con éxito. Deberá abonar una suma de $12' }.to_json, headers: {})
+end
+
 def cuando_consulto_el_estado_de_la_publicacion(token, message_text)
   get_updates_mock(token, message_text)
   # 21, marca: Fiat, modelo: Uno, anio: 1995, patente: 'MHF-200', precio: 75000\nofertas:\n [#1 monto_ofertado: 45000]

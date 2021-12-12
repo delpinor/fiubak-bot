@@ -12,6 +12,7 @@ class TareaAyuda < Tarea
       '/ofertar id_publicacion,precio' + "\n" \
       '/consultar_publicacion id_publicacion' + "\n" \
       '/rechazar_oferta id_oferta' + "\n" \
-      '/aceptar_oferta id_oferta'
+      '/aceptar_oferta id_oferta' + "\n" \
+      '/test_drive id_publicacion'
   end
 end

@@ -12,3 +12,9 @@ services:
         - .:/app
     environment:
         RACK_ENV: "development"
+    networks:
+      - nairobi-api_some-net
+
+networks:
+  nairobi-api_some-net:
+    external: true

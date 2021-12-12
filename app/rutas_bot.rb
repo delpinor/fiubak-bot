@@ -16,6 +16,7 @@ require "#{File.dirname(__FILE__)}/tarea_ofertar_p2p"
 require "#{File.dirname(__FILE__)}/tarea_consultar_publicacion"
 require "#{File.dirname(__FILE__)}/tarea_rechazar_oferta"
 require "#{File.dirname(__FILE__)}/tarea_aceptar_oferta"
+require "#{File.dirname(__FILE__)}/tarea_solicitar_test_drive"
 
 class RutasBot
   include Routing
@@ -64,6 +65,8 @@ class RutasBot
   procesar_patron(%r{/aceptar_oferta (?<datos>.*)}, TareaAceptarOferta.new)
 
   procesar_patron(%r{/consultar_publicacion (?<datos>.*)}, TareaConsultarPublicacion.new)
+
+  procesar_patron(%r{/test_drive (?<datos>.*)}, TareaSolicitarTestDrive.new)
 
   on_message '/time' do |bot, message|
     bot.api.send_message(chat_id: message.chat.id, text: "La hora actual es, #{Time.now}")

@@ -40,7 +40,7 @@ describe 'Bot de telegram' do
   end
 
   it 'cuando envio /ayuda entonces obtengo una lista donde veo /registrar Nombre, DNI, email' do
-    mensaje_esperado = "💁 Comandos disponibles:\n \n/registrar Nombre, DNI, email\n/nueva_venta marca, modelo, año, patente\n/consultar_estado id_intencion_de_venta\n/aceptar_cotizacion id_intencion_de_venta\n/busqueda\n/publicar id_intencion_de_venta, p2p, precio\n/ofertar id_publicacion,precio\n/consultar_publicacion id_publicacion\n/rechazar_oferta id_oferta\n/aceptar_oferta id_oferta"
+    mensaje_esperado = "💁 Comandos disponibles:\n \n/registrar Nombre, DNI, email\n/nueva_venta marca, modelo, año, patente\n/consultar_estado id_intencion_de_venta\n/aceptar_cotizacion id_intencion_de_venta\n/busqueda\n/publicar id_intencion_de_venta, p2p, precio\n/ofertar id_publicacion,precio\n/consultar_publicacion id_publicacion\n/rechazar_oferta id_oferta\n/aceptar_oferta id_oferta\n/test_drive id_publicacion"
     token = 'fake_token'
     cuando_envio_un_mensaje(token, '/ayuda')
     entonces_obtengo_el_mensaje(token, mensaje_esperado)
@@ -110,6 +110,14 @@ describe 'Bot de telegram' do
     token = 'fake_token'
     cuando_registro_una_oferta_p2p(token, '/ofertar 1,35')
     entonces_obtengo_el_mensaje(token, 'Generaste la oferta #1 por Fiat Uno de $35')
+    app = BotClient.new(token)
+    app.run_once
+  end
+
+  it 'Cuando le envio /test_drive 1 al bot con una publicacion valida obtengo un mensaje de oferta generada' do
+    token = 'fake_token'
+    cuando_solicito_un_test_drive(token, '/test_drive 1')
+    entonces_obtengo_el_mensaje(token, 'Test-drive para el día de hoy contratado con éxito. Deberá abonar una suma de $12')
     app = BotClient.new(token)
     app.run_once
   end
