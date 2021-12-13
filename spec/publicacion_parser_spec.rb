@@ -1,5 +1,5 @@
 require 'spec_helper'
-require_relative '../../app/helpers/publicacion_parser.rb'
+require_relative '../app/helpers/publicacion_parser'
 
 describe 'Publicacion parser' do
   let(:mensaje) { '123,p2p,45000' }

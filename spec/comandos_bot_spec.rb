@@ -7,10 +7,11 @@ require_relative '../spec/helpers/bot_helpers'
 # require 'vcr_helper'
 
 describe 'Bot de telegram' do
-  it 'Cuando le envio /start, entonces el bot response Hola' do
+
+  it 'Cuando le envio un comando desconocido response que no entiede' do
     token = 'fake_token'
-    cuando_envio_un_mensaje(token, '/start')
-    entonces_obtengo_el_mensaje(token, 'Hola, Nairobi')
+    cuando_envio_un_mensaje(token, '/desconocido')
+    entonces_obtengo_el_mensaje(token, "No te entiendo, pero esto te puede ayudar: \n \n #{TareaAyuda.new.procesar(nil, nil)}")
     app = BotClient.new(token)
     app.run_once
   end
