@@ -39,7 +39,7 @@ class RutasBot
 
   procesar_patron(%r{/aceptar_cotizacion (?<datos>.*)}, TareaAceptarCotizacion.new)
 
-  procesar_patron(%r{/publicar (?<datos>.*)}, TareaPublicarPorP2P.new)
+  procesar_patron(%r{/rechazar (?<datos>.*)}, TareaPublicarPorP2P.new)
 
   procesar_patron(%r{/ofertar (?<datos>.*)}, TareaOfertarPorP2P.new)
 

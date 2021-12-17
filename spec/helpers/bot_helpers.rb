@@ -104,7 +104,7 @@ def cuando_registro_una_publicacion_por_p2p(token, message_text)
 
   stub_request(:post, 'https://test.api/publicaciones')
     .with(
-      body: { '{"id_intencion_de_venta":1,"tipo":"p2p","precio":45000}' => nil },
+      body: { '{"id_intencion_de_venta":1,"precio":45000}' => nil },
       headers: {
         'Accept' => '*/*',
         'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',

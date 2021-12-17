@@ -4,3 +4,4 @@ metadata:
   name: botconfig
 data:
   LOG_LEVEL: "info"
+  API_HEROKU_URL: "https://webapi-nairobi-prod.herokuapp.com"
